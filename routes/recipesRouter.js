@@ -16,7 +16,7 @@ router.use(authMiddleware);
 
 router.get("/category-list", asyncWrapper(getCategoryListController));
 router.get("/main-page", asyncWrapper(getMainPageRecipesController));
-router.get("/:category", asyncWrapper(getRecipesInCategoryController));
-router.get("/:id", asyncWrapper(getSingleRecipiesController));
+router.get("/category/:category", asyncWrapper(getRecipesInCategoryController));
+router.get("/:idResipie", asyncWrapper(getSingleRecipiesController));
 
 module.exports = { recipesRouter: router };
