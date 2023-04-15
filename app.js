@@ -5,6 +5,12 @@ const cors = require("cors");
 const { subscribeRouter } = require("./routes/susbscribeRouter");
 const { authRouter } = require("./routes/authRouter");
 const { userRouter } = require("./routes/userRouter");
+const { recipesRouter } = require("./routes/recipesRouter");
+const { searchRouter } = require("./routes/searchRouter");
+const { ingredientsRouter } = require("./routes/ingredientsRouter");
+const { ownRecipesRouter } = require("./routes/ownRecipesRouter");
+const { favoriteRouter } = require("./routes/favoriteRouter");
+const { popularRouter } = require("./routes/popularRouter");
 
 const { errorHandler } = require("./middleware/errorHandler");
 
@@ -26,6 +32,12 @@ app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/api/subscribe", subscribeRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
+app.use("/api/recipes", recipesRouter);
+app.use("/api/search", searchRouter);
+app.use("/api/ingredients", ingredientsRouter);
+app.use("/api/ownRecipes", ownRecipesRouter);
+app.use("/api/favorite", favoriteRouter);
+app.use("/api/popular-recipe", popularRouter);
 
 app.use(errorHandler);
 
