@@ -9,4 +9,12 @@ const getSingleRecipiesService = async (idResipie) => {
   return await Recipe.findOne({ _id: idResipie });
 };
 
-module.exports = { getCategoryListService, getSingleRecipiesService };
+const getRecipesInCategoryService = async (category, { skip, limit }) => {
+  return await Recipe.find({ category }).skip(skip).limit(limit);
+};
+
+module.exports = {
+  getCategoryListService,
+  getSingleRecipiesService,
+  getRecipesInCategoryService,
+};
