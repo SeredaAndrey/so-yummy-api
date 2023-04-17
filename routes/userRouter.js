@@ -13,6 +13,6 @@ const router = express.Router();
 router.use(authMiddleware);
 
 router.get("/", asyncWrapper(getUserDataController));
-router.patch("/patchName", asyncWrapper(patchUserDataController));
+router.patch("/patch", asyncWrapper(patchUserDataController));
 
 module.exports = { userRouter: router };
