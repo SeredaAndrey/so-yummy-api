@@ -1,5 +1,5 @@
 ---Registartion----------------------------------------ready for testing-----------------------
-POST: /api/auth/reg body:{"email":"", "password":""}
+POST: /api/auth/registration body:{"email":"", "password":""}
 
 ---Verification----------------------------------------ready for testing-----------------------
 GET: /api/auth/verify/:vCode body:{"email":""}
@@ -12,7 +12,7 @@ GET: /api/auth/logout heder:Autorization: Bearer token
 GET: /api/user heder:Autorization: Bearer token
 
 ---Patching user data----------------------------------ready for testing-----------------------
-PATCH: /api/user/patchName body:{"name":""}, heder:Autorization: Bearer token
+PATCH: /api/user/patch body:{"name":""}, heder:Autorization: Bearer token
 
 ---Subscribe to recent---------------------------------ready for testing-----------------------
 GET: /api/subscribe body:{"email":""}

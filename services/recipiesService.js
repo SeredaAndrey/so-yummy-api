@@ -10,7 +10,10 @@ const getSingleRecipiesService = async (idResipie) => {
 };
 
 const getRecipesInCategoryService = async (category, { skip, limit }) => {
-  const result = await Recipe.find({ category }).skip(skip).limit(limit);
+  const result = await Recipe.find({ category })
+    .select({ _id: 1, thumb: 1, preview: 1 })
+    .skip(skip)
+    .limit(limit);
   return { category, recipes: result };
 };
 
