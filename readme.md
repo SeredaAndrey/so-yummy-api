@@ -12,7 +12,7 @@ GET: /api/auth/logout heder:Autorization: Bearer token
 GET: /api/user heder:Autorization: Bearer token
 
 ---Patching user data----------------------------------ready for testing-----------------------
-PATCH: /api/user/patch body:{"name":""}, heder:Autorization: Bearer token
+PATCH: /api/user body:{"name":""}, heder:Autorization: Bearer token
 
 ---Subscribe to recent---------------------------------ready for testing-----------------------
 GET: /api/subscribe body:{"email":""}
