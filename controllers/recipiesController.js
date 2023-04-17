@@ -65,7 +65,8 @@ const getRecipesInCategoryController = async (req, res, next) => {
   if (!reqValidateParams.error) {
     if (!reqValidateQuery.error) {
       const { category } = req.params;
-      const recipes = await getRecipesInCategoryService(category, {
+
+      const recipes = await getRecipesInCategoryService(capitalize(category), {
         skip,
         limit,
       });
@@ -80,6 +81,14 @@ const getRecipesInCategoryController = async (req, res, next) => {
       } else throw new FoundingError("Recipes not found");
     } else throw new ValidateError(reqValidateQuery.error);
   } else throw new ValidateError(reqValidateParams.error);
+};
+
+const capitalize = (str) => {
+  const toLowerCaseCategory = str.toLowerCase();
+
+  return toLowerCaseCategory.replace(/(^|\s)\S/g, function (a) {
+    return a.toUpperCase();
+  });
 };
 
 const getSingleRecipiesController = async (req, res, next) => {
