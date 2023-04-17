@@ -31,10 +31,10 @@ GET: /api/ingredients/list heder:Autorization: Bearer token (correcting)
 GET: /api/ingredients heder:Autorization: Bearer token (correcting)
 
 ---Adding and patching owner recipes------------------------------------------
-GET: /api/ownRecipes heder:Autorization: Bearer token (correcting)
-POST: /api/ownRecipes heder:Autorization: Bearer token (correcting)
-DELETE: /api/ownRecipes/:id heder:Autorization: Bearer token (correcting)
-PATCH: /api/ownRecipes/:id heder:Autorization: Bearer token (correcting)
+GET: /api/ownRecipes heder:Autorization: Bearer token
+POST: /api/ownRecipes heder:Autorization: Bearer token
+DELETE: /api/ownRecipes/:id heder:Autorization: Bearer token
+PATCH: /api/ownRecipes/:id heder:Autorization: Bearer token
 
 ---Adding recipies to favorite------------------------------------------------
 PATCH: /api/favorite/:id heder:Autorization: Bearer token (correcting)
