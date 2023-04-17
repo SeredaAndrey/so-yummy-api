@@ -26,4 +26,13 @@ const recipieInCategoryQueryValidete = Joi.object({
   limit: Joi.string().pattern(/[0-9]/, { name: "numbers" }).min(1),
 });
 
-module.exports = { recipieInCategoryValidate, recipieInCategoryQueryValidete };
+const recipieMainPageQueryValidete = Joi.object({
+  page: Joi.string().pattern(/[0-9]/, { name: "numbers" }).min(1),
+  limit: Joi.string().pattern(/[0-9]/, { name: "numbers" }).min(1),
+});
+
+module.exports = {
+  recipieInCategoryValidate,
+  recipieInCategoryQueryValidete,
+  recipieMainPageQueryValidete,
+};

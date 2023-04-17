@@ -1,26 +1,26 @@
----Registartion---------------------------------------------------------------
+---Registartion----------------------------------------ready for testing-----------------------
 POST: /api/auth/reg body:{"email":"", "password":""}
 
----Verification---------------------------------------------------------------
+---Verification----------------------------------------ready for testing-----------------------
 GET: /api/auth/verify/:vCode body:{"email":""}
 
----Auntentification-----------------------------------------------------------
+---Auntentification------------------------------------ready for testing-----------------------
 POST: /api/auth/login body:{"email":"", "password":""}
 GET: /api/auth/logout heder:Autorization: Bearer token
 
----Getting user data----------------------------------------------------------
+---Getting user data-----------------------------------ready for testing-----------------------
 GET: /api/user heder:Autorization: Bearer token
 
----Patching user data---------------------------------------------------------
+---Patching user data----------------------------------ready for testing-----------------------
 PATCH: /api/user/patchName body:{"name":""}, heder:Autorization: Bearer token
 
----Subscribe to recent--------------------------------------------------------
+---Subscribe to recent---------------------------------ready for testing-----------------------
 GET: /api/subscribe body:{"email":""}
 
----Getting recipes------------------------------------------------------------
+---Getting recipes-------------------------------------ready for testing-----------------------
 GET: /api/recipes/category-list heder:Autorization: Bearer token
-GET: /api/recipes/main-page heder:Autorization: Bearer token (correcting)
-GET: /api/recipes/category/:category heder:Autorization: Bearer token query:{ "page":"", "limit":"" }
+GET: /api/recipes/main-page heder:Autorization: Bearer token, query:{ "page":"", "limit":"" }(defoult page=1, limit=4)
+GET: /api/recipes/category/:category heder:Autorization: Bearer token, query:{ "page":"", "limit":"" }(defoult page=1, limit=8)
 GET: /api/recipes/:id heder:Autorization: Bearer token
 
 ---Search recipes-------------------------------------------------------------
