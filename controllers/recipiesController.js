@@ -1,7 +1,9 @@
+const { get } = require("mongoose");
 const { FoundingError, ValidateError } = require("../middleware/errorHandler");
 const {
   recipieInCategoryValidate,
   recipieInCategoryQueryValidete,
+  recipieMainPageQueryValidete,
 } = require("../schemas/recipieValidate");
 
 const {
@@ -11,13 +13,13 @@ const {
 } = require("../services/recipiesService");
 
 const getCategoryListController = async (req, res, next) => {
-  let { category } = await getCategoryListService();
-  category = category.sort((a, b) => a.localeCompare(b));
-  if (category) {
+  let { categorys } = await getCategoryListService();
+  categorys = categorys.sort((a, b) => a.localeCompare(b));
+  if (categorys) {
     res.status(200).json({
       message: "getting caegory list succes",
       code: 200,
-      categorys: category,
+      categorys,
     });
   } else {
     throw new FoundingError("category list not found");
@@ -25,7 +27,32 @@ const getCategoryListController = async (req, res, next) => {
 };
 
 const getMainPageRecipesController = async (req, res, next) => {
-  res.status(200).json({ message: "ok", code: 200 });
+  const reqValidateQuery = recipieMainPageQueryValidete.validate(req.query);
+  let { page = 1, limit = 4 } = req.query;
+  limit = parseInt(limit);
+  const skip = (parseInt(page) - 1) * limit;
+
+  if (!reqValidateQuery.error) {
+    const { categorys } = await getCategoryListService();
+
+    let recipes = [];
+
+    for (const category of categorys) {
+      const recipe = await getRecipesInCategoryService(category, {
+        skip,
+        limit,
+      });
+      recipes = [...recipes, recipe];
+    }
+
+    res.status(200).json({
+      message: "geting resipes for main page succes",
+      code: 200,
+      recipes,
+    });
+  } else {
+    throw new ValidateError(reqValidateQuery.error);
+  }
 };
 
 const getRecipesInCategoryController = async (req, res, next) => {
