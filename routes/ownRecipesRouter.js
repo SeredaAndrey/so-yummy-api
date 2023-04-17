@@ -8,7 +8,11 @@ const {
   patchOwnerRecipesController,
 } = require("../controllers/ownRecipesController");
 
+const { authMiddleware } = require("../middleware/authMiddleware");
+
 const router = express.Router();
+
+router.use(authMiddleware);
 
 router.get("/", asyncWrapper(getOwnerRecipesController));
 router.post("/", asyncWrapper(postOwnerRecipesController));

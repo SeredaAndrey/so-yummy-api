@@ -1,5 +1,28 @@
 const Joi = require("joi");
 
+const ingredientsItems = Joi.object({
+  id: Joi.string(),
+  measure: Joi.string(),
+});
+
+const postRecipeValidate = Joi.object({
+  title: Joi.string().required(),
+  category: Joi.string().required(),
+  area: Joi.string(),
+  thumb: Joi.string(),
+  preview: Joi.string(),
+  tags: Joi.array().items(Joi.string()),
+  ingredients: Joi.array().items({
+    id: Joi.string(),
+    measure: Joi.string(),
+  }),
+  instructions: Joi.string().required(),
+  description: Joi.string().required(),
+  time: Joi.string().required(),
+  popularity: Joi.number(),
+  youtube: Joi.string(),
+});
+
 const recipieInCategoryValidate = Joi.object({
   category: Joi.string()
     .required()
@@ -31,8 +54,15 @@ const recipieMainPageQueryValidete = Joi.object({
   limit: Joi.string().pattern(/[0-9]/, { name: "numbers" }).min(1),
 });
 
+const recipieOwnerQueryValidete = Joi.object({
+  page: Joi.string().pattern(/[0-9]/, { name: "numbers" }).min(1),
+  limit: Joi.string().pattern(/[0-9]/, { name: "numbers" }).min(1),
+});
+
 module.exports = {
+  postRecipeValidate,
   recipieInCategoryValidate,
   recipieInCategoryQueryValidete,
   recipieMainPageQueryValidete,
+  recipieOwnerQueryValidete,
 };
