@@ -11,11 +11,14 @@ const {
 } = require("../services/recipiesService");
 
 const getCategoryListController = async (req, res, next) => {
-  const data = await getCategoryListService();
-  if (data) {
-    res
-      .status(200)
-      .json({ message: "getting caegory list succes", code: 200, data });
+  let { category } = await getCategoryListService();
+  category = category.sort((a, b) => a.localeCompare(b));
+  if (category) {
+    res.status(200).json({
+      message: "getting caegory list succes",
+      code: 200,
+      categorys: category,
+    });
   } else {
     throw new FoundingError("category list not found");
   }

@@ -20,7 +20,7 @@ GET: /api/subscribe body:{"email":""}
 ---Getting recipes------------------------------------------------------------
 GET: /api/recipes/category-list heder:Autorization: Bearer token
 GET: /api/recipes/main-page heder:Autorization: Bearer token (correcting)
-GET: /api/recipes/category/:category heder:Autorization: Bearer token (correcting)
+GET: /api/recipes/category/:category heder:Autorization: Bearer token query:{ "page":"", "limit":"" }
 GET: /api/recipes/:id heder:Autorization: Bearer token
 
 ---Search recipes-------------------------------------------------------------
