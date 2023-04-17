@@ -12,7 +12,7 @@ const {
 
 const router = express.Router();
 
-router.post("/reg", asyncWrapper(registrationController));
+router.post("/registration", asyncWrapper(registrationController));
 router.get("/verify/:vCode", asyncWrapper(verifycationController));
 router.post("/login", asyncWrapper(loginController));
 
