@@ -13,7 +13,7 @@ const getUserDataController = async (req, res, next) => {
     res.status(200).json({
       message: "User found succes",
       code: 200,
-      userData: user,
+      user,
     });
   }
   throw new FoundingError("User not found");
@@ -30,7 +30,7 @@ const patchUserDataController = async (req, res, next) => {
       res.status(200).json({
         message: "User patch data succes",
         code: 200,
-        userData: user,
+        user,
       });
     } else {
       throw new FoundingError("User not found");

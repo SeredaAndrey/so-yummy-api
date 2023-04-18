@@ -18,7 +18,7 @@ const config = {
 
 const transporter = nodemailer.createTransport(config);
 
-const registrationService = async (email, password) => {
+const registrationService = async ({ email, password, name }) => {
   const user = await User.findOne({ email });
 
   const vCode = shajs("sha256").update("8").digest("hex");
@@ -27,7 +27,7 @@ const registrationService = async (email, password) => {
     return;
   }
 
-  const newUser = new User({ email, password, vCode });
+  const newUser = new User({ email, password, name, vCode });
   await newUser.save();
 
   const msgVerify = {
