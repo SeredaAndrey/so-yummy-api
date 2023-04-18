@@ -1,3 +1,5 @@
+Base URL "https://so-yummy-api.herokuapp.com"
+
 ---Registartion----------------------------------------ready for testing-----------------------
 POST: /api/auth/registration body:{"email":"", "password":""}
 
