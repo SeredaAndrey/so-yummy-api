@@ -1,11 +1,18 @@
 const Joi = require("joi");
 
-const userValidate = Joi.object({
+const userRegValidate = Joi.object({
   email: Joi.string()
     .email({ minDomainSegments: 2, tlds: { allow: ["com", "net", "ua"] } })
     .required(),
   password: Joi.string().min(6).max(16).required(),
   name: Joi.string().min(1).max(16).required(),
+});
+
+const userLoginValidate = Joi.object({
+  email: Joi.string()
+    .email({ minDomainSegments: 2, tlds: { allow: ["com", "net", "ua"] } })
+    .required(),
+  password: Joi.string().min(6).max(16).required(),
 });
 
 const userPatchNameValidate = Joi.object({
@@ -18,4 +25,9 @@ const subscribeValidate = Joi.object({
     .required(),
 });
 
-module.exports = { userValidate, userPatchNameValidate, subscribeValidate };
+module.exports = {
+  userRegValidate,
+  userLoginValidate,
+  userPatchNameValidate,
+  subscribeValidate,
+};
