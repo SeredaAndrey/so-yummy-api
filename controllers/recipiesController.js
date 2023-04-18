@@ -2,8 +2,7 @@ const { get } = require("mongoose");
 const { FoundingError, ValidateError } = require("../middleware/errorHandler");
 const {
   recipieInCategoryValidate,
-  recipieInCategoryQueryValidete,
-  recipieMainPageQueryValidete,
+  recipieQueryValidete,
 } = require("../schemas/recipieValidate");
 
 const {
@@ -27,7 +26,7 @@ const getCategoryListController = async (req, res, next) => {
 };
 
 const getMainPageRecipesController = async (req, res, next) => {
-  const reqValidateQuery = recipieMainPageQueryValidete.validate(req.query);
+  const reqValidateQuery = recipieQueryValidete.validate(req.query);
   let { page = 1, limit = 4 } = req.query;
   limit = parseInt(limit);
   const skip = (parseInt(page) - 1) * limit;
@@ -57,7 +56,7 @@ const getMainPageRecipesController = async (req, res, next) => {
 
 const getRecipesInCategoryController = async (req, res, next) => {
   const reqValidateParams = recipieInCategoryValidate.validate(req.params);
-  const reqValidateQuery = recipieInCategoryQueryValidete.validate(req.query);
+  const reqValidateQuery = recipieQueryValidete.validate(req.query);
   let { page = 1, limit = 8 } = req.query;
   limit = parseInt(limit);
   const skip = (parseInt(page) - 1) * limit;

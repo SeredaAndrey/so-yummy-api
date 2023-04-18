@@ -44,17 +44,7 @@ const recipieInCategoryValidate = Joi.object({
     ),
 });
 
-const recipieInCategoryQueryValidete = Joi.object({
-  page: Joi.string().pattern(/[0-9]/, { name: "numbers" }).min(1),
-  limit: Joi.string().pattern(/[0-9]/, { name: "numbers" }).min(1),
-});
-
-const recipieMainPageQueryValidete = Joi.object({
-  page: Joi.string().pattern(/[0-9]/, { name: "numbers" }).min(1),
-  limit: Joi.string().pattern(/[0-9]/, { name: "numbers" }).min(1),
-});
-
-const recipieOwnerQueryValidete = Joi.object({
+const recipieQueryValidete = Joi.object({
   page: Joi.string().pattern(/[0-9]/, { name: "numbers" }).min(1),
   limit: Joi.string().pattern(/[0-9]/, { name: "numbers" }).min(1),
 });
@@ -62,7 +52,5 @@ const recipieOwnerQueryValidete = Joi.object({
 module.exports = {
   postRecipeValidate,
   recipieInCategoryValidate,
-  recipieInCategoryQueryValidete,
-  recipieMainPageQueryValidete,
-  recipieOwnerQueryValidete,
+  recipieQueryValidete,
 };
