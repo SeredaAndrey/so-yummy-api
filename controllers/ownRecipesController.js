@@ -6,6 +6,7 @@ const {
 const {
   recipieQueryValidete,
   postRecipeValidate,
+  patchRecipeValidate,
 } = require("../schemas/recipieValidate");
 const {
   getOwnerRecipesService,
@@ -67,7 +68,7 @@ const deleteOwnerRecipesController = async (req, res, next) => {
 };
 
 const patchOwnerRecipesController = async (req, res, next) => {
-  const reqValidate = postRecipeValidate.validate(req.body);
+  const reqValidate = patchRecipeValidate.validate(req.body);
   const body = req.body;
   const userId = req.user._id;
   const { idRecipes } = req.params;
