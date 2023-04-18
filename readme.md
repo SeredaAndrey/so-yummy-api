@@ -1,7 +1,7 @@
 Base URL "https://so-yummy-api.herokuapp.com"
 
 ---Registartion----------------------------------------ready for testing-----------------------
-POST: /api/auth/registration body:{"email":"", "password":""}
+POST: /api/auth/registration body:{"email":"", "password":"","ligin":""}
 
 ---Verification----------------------------------------ready for testing-----------------------
 GET: /api/auth/verify/:vCode body:{"email":""}
