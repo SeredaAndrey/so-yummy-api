@@ -5,7 +5,10 @@ const {
   ValidateError,
   AutorizationError,
 } = require("../middleware/errorHandler");
-const { userValidate } = require("../schemas/userValidate");
+const {
+  userRegValidate,
+  userLoginValidate,
+} = require("../schemas/userValidate");
 const {
   registrationService,
   verificationService,
@@ -14,7 +17,7 @@ const {
 } = require("../services/authService");
 
 const registrationController = async (req, res, next) => {
-  const requestValidate = userValidate.validate(req.body);
+  const requestValidate = userRegValidate.validate(req.body);
   const body = req.body;
 
   if (!requestValidate.error) {
@@ -50,7 +53,7 @@ const verifycationController = async (req, res, next) => {
 };
 
 const loginController = async (req, res, next) => {
-  const requestValidate = userValidate.validate(req.body);
+  const requestValidate = userLoginValidate.validate(req.body);
   const { email, password } = req.body;
   if (!requestValidate.error) {
     const data = await loginService(email, password);
