@@ -15,15 +15,15 @@ const {
 
 const registrationController = async (req, res, next) => {
   const requestValidate = userValidate.validate(req.body);
-  const { email, password } = req.body;
+  const body = req.body;
 
   if (!requestValidate.error) {
-    const user = await registrationService(email, password);
+    const user = await registrationService(body);
     if (user) {
       return res.status(201).json({
         message: "created",
         code: 201,
-        user: { email: email },
+        user,
       });
     } else {
       throw new ConflictError("Email is already in use");
