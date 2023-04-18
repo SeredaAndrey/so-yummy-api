@@ -1,10 +1,5 @@
 const Joi = require("joi");
 
-const ingredientsItems = Joi.object({
-  id: Joi.string(),
-  measure: Joi.string(),
-});
-
 const postRecipeValidate = Joi.object({
   title: Joi.string().required(),
   category: Joi.string().required(),
@@ -12,13 +7,35 @@ const postRecipeValidate = Joi.object({
   thumb: Joi.string(),
   preview: Joi.string(),
   tags: Joi.array().items(Joi.string()),
-  ingredients: Joi.array().items({
-    id: Joi.string(),
-    measure: Joi.string(),
-  }),
+  ingredients: Joi.array().items(
+    Joi.object({
+      id: Joi.string(),
+      measure: Joi.string(),
+    })
+  ),
   instructions: Joi.string().required(),
   description: Joi.string().required(),
   time: Joi.string().required(),
+  popularity: Joi.number(),
+  youtube: Joi.string(),
+});
+
+const patchRecipeValidate = Joi.object({
+  title: Joi.string(),
+  category: Joi.string(),
+  area: Joi.string(),
+  thumb: Joi.string(),
+  preview: Joi.string(),
+  tags: Joi.array().items(Joi.string()),
+  ingredients: Joi.array().items(
+    Joi.object({
+      id: Joi.string(),
+      measure: Joi.string(),
+    })
+  ),
+  instructions: Joi.string(),
+  description: Joi.string(),
+  time: Joi.string(),
   popularity: Joi.number(),
   youtube: Joi.string(),
 });
@@ -53,4 +70,5 @@ module.exports = {
   postRecipeValidate,
   recipieInCategoryValidate,
   recipieQueryValidete,
+  patchRecipeValidate,
 };
