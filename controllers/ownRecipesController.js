@@ -4,7 +4,7 @@ const {
   InternalError,
 } = require("../middleware/errorHandler");
 const {
-  recipieOwnerQueryValidete,
+  recipieQueryValidete,
   postRecipeValidate,
 } = require("../schemas/recipieValidate");
 const {
@@ -15,7 +15,7 @@ const {
 } = require("../services/ownRecipeService");
 
 const getOwnerRecipesController = async (req, res, next) => {
-  const reqValidateQuery = recipieOwnerQueryValidete.validate(req.query);
+  const reqValidateQuery = recipieQueryValidete.validate(req.query);
   const _id = req.user._id;
 
   let { page = 1, limit = 4 } = req.query;
