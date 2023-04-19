@@ -5,9 +5,17 @@ const getUserDataService = async (_id) => {
 };
 
 const patchUserDataService = async (_id, body, avatarUrl) => {
+  const { name } = body;
+  const result = await getUserDataService(_id);
+  if (!result) {
+    return;
+  }
+  if (!avatarUrl) {
+    avatarUrl = result.avatarUrl;
+  }
   const user = await User.findOneAndUpdate(
     { _id },
-    { body, avatarUrl },
+    { name, avatarUrl },
     { new: true }
   );
   if (user) {
