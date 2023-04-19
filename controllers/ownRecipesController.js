@@ -37,7 +37,13 @@ const getOwnerRecipesController = async (req, res, next) => {
 };
 
 const postOwnerRecipesController = async (req, res, next) => {
-  const thumb = req.file.path;
+  let thumb = "";
+  if (req.file) {
+    thumb = req.file.path;
+  } else {
+    thumb = null;
+  }
+
   const reqValidate = postRecipeValidate.validate(req.body);
   const _id = req.user._id;
   const body = req.body;
