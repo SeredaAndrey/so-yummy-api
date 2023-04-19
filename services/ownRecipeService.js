@@ -21,33 +21,12 @@ const patchOwnerRecipesService = async (userId, idRecipes, body, thumb) => {
   if (!result) {
     return;
   }
-  const title = body.title || result.title;
-  const category = body.category || result.category;
-  const area = body.area || result.area;
-  const instructions = body.instructions || result.instructions;
-  const description = body.description || result.description;
-  const time = body.time || result.time;
-  const youtube = body.youtube || result.youtube;
-  const tags = body.tags || result.tags;
-
-  console.log(title);
-
   if (!thumb) {
     thumb = result.thumb;
   }
   return await Recipe.findOneAndUpdate(
     { _id: idRecipes },
-    {
-      title,
-      category,
-      area,
-      instructions,
-      description,
-      time,
-      youtube,
-      tags,
-      thumb,
-    },
+    { ...body, thumb },
     { new: true }
   );
 };
