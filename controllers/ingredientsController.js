@@ -8,7 +8,7 @@ const getListIngredientsController = async (req, res, next) => {
     res.status(200).json({
       message: "getting ingredients list success",
       code: 200,
-      ingredients,
+      data: ingredients,
     });
   } else throw new FoundingError("ingredients list not found");
 };
