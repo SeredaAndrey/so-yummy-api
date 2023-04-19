@@ -37,12 +37,13 @@ const getOwnerRecipesController = async (req, res, next) => {
 };
 
 const postOwnerRecipesController = async (req, res, next) => {
+  const thumb = req.file.path;
   const reqValidate = postRecipeValidate.validate(req.body);
   const _id = req.user._id;
   const body = req.body;
 
   if (!reqValidate.error) {
-    const recipe = await postOwnerRecipesService(_id, body);
+    const recipe = await postOwnerRecipesService(_id, body, thumb);
     if (recipe) {
       res.status(201).json({
         message: "create recipe success",
@@ -68,14 +69,24 @@ const deleteOwnerRecipesController = async (req, res, next) => {
 };
 
 const patchOwnerRecipesController = async (req, res, next) => {
+  let thumb = "";
+  if (req.file) {
+    thumb = req.file.path;
+  } else {
+    thumb = null;
+  }
   const reqValidate = patchRecipeValidate.validate(req.body);
   const body = req.body;
   const userId = req.user._id;
   const { idRecipes } = req.params;
-  console.log(idRecipes);
+
   if (!reqValidate.error) {
-    const recipe = await patchOwnerRecipesService(userId, idRecipes, body);
-    console.log(recipe);
+    const recipe = await patchOwnerRecipesService(
+      userId,
+      idRecipes,
+      body,
+      thumb
+    );
     if (recipe) {
       res.status(200).json({
         message: "patch owner recipe success",

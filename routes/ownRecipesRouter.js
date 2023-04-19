@@ -1,5 +1,7 @@
 const express = require("express");
 
+const uploadCloud = require("../middleware/uploadMiddleware");
+
 const { asyncWrapper } = require("../middleware/errorHandler");
 const {
   getOwnerRecipesController,
@@ -15,8 +17,16 @@ const router = express.Router();
 router.use(authMiddleware);
 
 router.get("/", asyncWrapper(getOwnerRecipesController));
-router.post("/", asyncWrapper(postOwnerRecipesController));
+router.post(
+  "/",
+  uploadCloud.single("image"),
+  asyncWrapper(postOwnerRecipesController)
+);
 router.delete("/:idRecipes", asyncWrapper(deleteOwnerRecipesController));
-router.patch("/:idRecipes", asyncWrapper(patchOwnerRecipesController));
+router.patch(
+  "/:idRecipes",
+  uploadCloud.single("image"),
+  asyncWrapper(patchOwnerRecipesController)
+);
 
 module.exports = { ownRecipesRouter: router };

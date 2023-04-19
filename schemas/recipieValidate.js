@@ -5,7 +5,7 @@ const postRecipeValidate = Joi.object({
   category: Joi.string().required(),
   area: Joi.string(),
   thumb: Joi.string(),
-  preview: Joi.string(),
+  preview: Joi.any(),
   tags: Joi.array().items(Joi.string()),
   ingredients: Joi.array().items(
     Joi.object({
@@ -23,7 +23,7 @@ const patchRecipeValidate = Joi.object({
   title: Joi.string(),
   category: Joi.string(),
   area: Joi.string(),
-  thumb: Joi.string(),
+  thumb: Joi.any(),
   preview: Joi.string(),
   tags: Joi.array().items(Joi.string()),
   ingredients: Joi.array().items(

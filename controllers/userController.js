@@ -20,8 +20,12 @@ const getUserDataController = async (req, res, next) => {
 };
 
 const patchUserDataController = async (req, res, next) => {
-  console.log(req.file.path);
-  const avatarUrl = req.file.path;
+  let avatarUrl = "";
+  if (req.file) {
+    avatarUrl = req.file.path;
+  } else {
+    avatarUrl = null;
+  }
   const reqValidate = userPatchValidate.validate(req.body);
   const body = req.body;
   const _id = req.user._id;
