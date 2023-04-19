@@ -11,7 +11,7 @@ const getUserDataController = async (req, res, next) => {
   const user = await getUserDataService(_id);
   if (user) {
     res.status(200).json({
-      message: "User found succes",
+      message: "User found success",
       code: 200,
       user,
     });
@@ -30,7 +30,7 @@ const patchUserDataController = async (req, res, next) => {
     const user = await patchUserDataService(_id, body, avatarUrl);
     if (user) {
       res.status(200).json({
-        message: "User patch data succes",
+        message: "User patch data success",
         code: 200,
         user,
       });

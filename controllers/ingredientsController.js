@@ -6,7 +6,7 @@ const getListIngredientsController = async (req, res, next) => {
   const ingredients = await getListIngredientsService();
   if (ingredients) {
     res.status(200).json({
-      message: "getting ingredients list succes",
+      message: "getting ingredients list success",
       code: 200,
       ingredients,
     });

@@ -16,9 +16,9 @@ const getCategoryListController = async (req, res, next) => {
   categorys = categorys.sort((a, b) => a.localeCompare(b));
   if (categorys) {
     res.status(200).json({
-      message: "getting caegory list succes",
+      message: "getting category list success",
       code: 200,
-      categorys,
+      categories: categorys,
     });
   } else {
     throw new FoundingError("category list not found");
@@ -45,7 +45,7 @@ const getMainPageRecipesController = async (req, res, next) => {
     }
 
     res.status(200).json({
-      message: "geting resipes for main page succes",
+      message: "getting recipes for main page success",
       code: 200,
       recipes,
     });
@@ -71,7 +71,7 @@ const getRecipesInCategoryController = async (req, res, next) => {
       });
       if (recipes) {
         return res.status(200).json({
-          message: "getting resipes by category succes",
+          message: "getting recipes by category success",
           code: 200,
           data: recipes,
           page: page,
@@ -95,11 +95,11 @@ const getSingleRecipiesController = async (req, res, next) => {
   const recipie = await getSingleRecipiesService(idResipie);
   if (recipie) {
     res.status(200).json({
-      message: "getting single recipie by id succes",
+      message: "getting single recipie by id success",
       code: 200,
       data: recipie,
     });
-  } else throw new FoundingError("Recipie not found");
+  } else throw new FoundingError("Recipe not found");
 };
 
 module.exports = {
