@@ -43,7 +43,7 @@ const registrationService = async ({ email, password, name }) => {
       return info;
     })
     .catch((err) => new InternalError(err));
-  return newUser;
+  return await User.findOne({ email }, { password: 0, vCode: 0 });
 };
 
 const verificationService = async (email, vCode) => {
