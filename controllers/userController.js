@@ -1,5 +1,5 @@
 const { FoundingError, ValidateError } = require("../middleware/errorHandler");
-const { userPatchNameValidate } = require("../schemas/userValidate");
+const { userPatchValidate } = require("../schemas/userValidate");
 
 const {
   getUserDataService,
@@ -20,9 +20,9 @@ const getUserDataController = async (req, res, next) => {
 };
 
 const patchUserDataController = async (req, res, next) => {
-  console.log(req.file);
-  const avatarUrl = req.file;
-  const reqValidate = userPatchNameValidate.validate(req.body);
+  console.log(req.file.path);
+  const avatarUrl = req.file.path;
+  const reqValidate = userPatchValidate.validate(req.body);
   const body = req.body;
   const _id = req.user._id;
 

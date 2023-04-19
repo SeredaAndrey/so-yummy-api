@@ -15,8 +15,9 @@ const userLoginValidate = Joi.object({
   password: Joi.string().min(6).max(16).required(),
 });
 
-const userPatchNameValidate = Joi.object({
+const userPatchValidate = Joi.object({
   name: Joi.string().min(1).max(16).required(),
+  avatarUrl: Joi.any(),
 });
 
 const subscribeValidate = Joi.object({
@@ -28,6 +29,6 @@ const subscribeValidate = Joi.object({
 module.exports = {
   userRegValidate,
   userLoginValidate,
-  userPatchNameValidate,
+  userPatchValidate,
   subscribeValidate,
 };

@@ -11,6 +11,7 @@ const popularService = async ({ skip, limit }) => {
       category: 1,
       time: 1,
       popularity: 1,
+      instructions: 1,
     })
     .skip(skip)
     .limit(limit);

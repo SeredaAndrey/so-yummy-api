@@ -2,12 +2,12 @@ const express = require("express");
 
 const { authMiddleware } = require("../middleware/authMiddleware");
 const { asyncWrapper } = require("../middleware/errorHandler");
+const uploadCloud = require("../middleware/uploadMiddleware");
 
 const {
   getUserDataController,
   patchUserDataController,
 } = require("../controllers/userController");
-const uploadCloud = require("../middleware/uploadMiddleware");
 
 const router = express.Router();
 
