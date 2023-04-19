@@ -20,12 +20,14 @@ const getUserDataController = async (req, res, next) => {
 };
 
 const patchUserDataController = async (req, res, next) => {
+  console.log(req.file);
+  const avatarUrl = req.file;
   const reqValidate = userPatchNameValidate.validate(req.body);
   const body = req.body;
   const _id = req.user._id;
 
   if (!reqValidate.error) {
-    const user = await patchUserDataService(_id, body);
+    const user = await patchUserDataService(_id, body, avatarUrl);
     if (user) {
       res.status(200).json({
         message: "User patch data succes",
