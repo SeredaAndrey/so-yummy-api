@@ -13,7 +13,7 @@ const popularController = async (req, res, next) => {
     const recipes = await popularService({ skip, limit });
     if (recipes) {
       return res.status(200).json({
-        message: "getting popular resipes succes",
+        message: "getting popular recipes success",
         code: 200,
         data: recipes,
         page: page,

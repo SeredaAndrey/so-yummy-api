@@ -34,8 +34,8 @@ const registrationService = async ({ email, password, name }) => {
     to: email,
     from: process.env.MAIL_LOGIN,
     subject: "Thank you for registration!",
-    text: `Please, confirm your email address using this token: ${vCode}`,
-    html: `Please, confirm your email address using this token: <strong>${vCode}</strong>`,
+    text: `Please, follow this link: ${vCode}`,
+    html: `Please, follow this link: <strong>${vCode}</strong>`,
   };
   transporter
     .sendMail(msgVerify)

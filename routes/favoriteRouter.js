@@ -10,6 +10,6 @@ const {
 const router = express.Router();
 
 router.get("/", asyncWrapper(getFavoriteRecipesController));
-router.patch("/:idrecipes", asyncWrapper(patchFavoriteRecipesController));
+router.patch("/:idRecipes", asyncWrapper(patchFavoriteRecipesController));
 
 module.exports = { favoriteRouter: router };

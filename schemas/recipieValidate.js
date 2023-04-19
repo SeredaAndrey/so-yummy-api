@@ -16,7 +16,6 @@ const postRecipeValidate = Joi.object({
   instructions: Joi.string().required(),
   description: Joi.string().required(),
   time: Joi.string().required(),
-  popularity: Joi.number(),
   youtube: Joi.string(),
 });
 
@@ -36,7 +35,6 @@ const patchRecipeValidate = Joi.object({
   instructions: Joi.string(),
   description: Joi.string(),
   time: Joi.string(),
-  popularity: Joi.number(),
   youtube: Joi.string(),
 });
 

@@ -12,7 +12,7 @@ const authMiddleware = (req, res, next) => {
   }
   const [, token] = authorization.split(" ");
   if (!token) {
-    return next(new AutorizationError("Not autorized"));
+    return next(new AutorizationError("Not authorized"));
   }
   try {
     const user = jwt.decode(token, process.env.JWT_SECRET);

@@ -10,7 +10,7 @@ const subscribeController = async (req, res, next) => {
     const resp = await subscribeService(email);
     if (resp) {
       return res.status(200).json({
-        message: `subscribe to ${email} succes`,
+        message: `subscribe to ${email} success`,
         code: 200,
       });
     } else {

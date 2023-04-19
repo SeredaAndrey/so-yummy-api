@@ -28,7 +28,7 @@ const getOwnerRecipesController = async (req, res, next) => {
     const ownRecipes = await getOwnerRecipesService(_id, { skip, limit });
     if (ownRecipes) {
       res.status(200).json({
-        message: "getting owner resipes is succes",
+        message: "getting owner recipes is success",
         code: 200,
         recipes: ownRecipes,
       });
@@ -45,7 +45,7 @@ const postOwnerRecipesController = async (req, res, next) => {
     const recipe = await postOwnerRecipesService(_id, body);
     if (recipe) {
       res.status(201).json({
-        message: "create recipe succes",
+        message: "create recipe success",
         code: 200,
         recipe,
       });
@@ -61,7 +61,7 @@ const deleteOwnerRecipesController = async (req, res, next) => {
 
   if (data) {
     res.status(200).json({
-      message: "delete owner recipe succes",
+      message: "delete owner recipe success",
       code: 200,
     });
   } else throw new FoundingError("recipe not found");
@@ -78,7 +78,7 @@ const patchOwnerRecipesController = async (req, res, next) => {
     console.log(recipe);
     if (recipe) {
       res.status(200).json({
-        message: "patch owner recipe succes",
+        message: "patch owner recipe success",
         code: 200,
         recipe,
       });

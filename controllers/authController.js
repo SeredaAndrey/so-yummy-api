@@ -42,7 +42,7 @@ const verifycationController = async (req, res, next) => {
 
   const data = await verificationService(email, vCode);
   if (!data) {
-    throw new AutorizationError("email or verifycation code is wrong");
+    throw new AutorizationError("email or verification code is wrong");
   }
   return res.status(200).json({
     message: "verification successful",
@@ -61,7 +61,7 @@ const loginController = async (req, res, next) => {
       throw new AutorizationError("email or password is wrong");
     }
     return res.status(200).json({
-      message: "loggined successful",
+      message: "logged successful",
       code: 200,
       token: data.token,
       user: { email: email },
