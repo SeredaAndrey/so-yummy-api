@@ -7,7 +7,7 @@ const {
 const getSearchController = async (req, res, next) => {
   const reqValidate = searchRecipeValidate.validate(req.query);
 
-  let { title, page = 1, limit = 4 } = req.query;
+  let { title, page = 1, limit = 12 } = req.query;
   limit = parseInt(limit);
   const skip = (parseInt(page) - 1) * limit;
 
