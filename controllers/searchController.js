@@ -20,7 +20,9 @@ const getSearchController = async (req, res, next) => {
       res.status(200).json({
         message: `getting recipes by querry <${title}> is success`,
         code: 200,
-        recipes,
+        data: recipes,
+        page: page,
+        limit: limit,
       });
     } else throw new FoundingError("Recipes not found");
   } else throw new ValidateError(reqValidate.error);
