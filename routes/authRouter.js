@@ -13,7 +13,7 @@ const {
 const router = express.Router();
 
 router.post("/registration", asyncWrapper(registrationController));
-router.get("/verify/:vCode", asyncWrapper(verifycationController));
+router.post("/verify/:vCode", asyncWrapper(verifycationController));
 router.post("/login", asyncWrapper(loginController));
 
 router.use(authMiddleware);
