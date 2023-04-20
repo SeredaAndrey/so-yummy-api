@@ -5,7 +5,7 @@ const userRegValidate = Joi.object({
     .email({ minDomainSegments: 2, tlds: { allow: ["com", "net", "ua"] } })
     .required(),
   password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{6,16}$")).required(),
-  name: Joi.string().min(1).max(16).required(),
+  name: Joi.string().pattern(new RegExp("^[ a-zA-Z0-9]{1,16}$")).required(),
 });
 
 const userLoginValidate = Joi.object({
@@ -16,7 +16,7 @@ const userLoginValidate = Joi.object({
 });
 
 const userPatchValidate = Joi.object({
-  name: Joi.string().min(1).max(16).required(),
+  name: Joi.string().pattern(new RegExp("^[ a-zA-Z0-9]{1,16}$")).required(),
   avatarUrl: Joi.any(),
 });
 

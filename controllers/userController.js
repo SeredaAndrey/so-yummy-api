@@ -39,7 +39,7 @@ const patchUserDataController = async (req, res, next) => {
         user,
       });
     } else {
-      throw new FoundingError("User not found");
+      throw new FoundingError("Logined user not found");
     }
   } else {
     throw new ValidateError(reqValidate.error);
