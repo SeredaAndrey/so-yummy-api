@@ -72,11 +72,13 @@ const loginController = async (req, res, next) => {
 const logoutController = async (req, res, next) => {
   const _id = req.user._id;
   console.log(_id);
-  await logoutService(_id);
-  return res.status(204).json({
-    message: "logout successful",
-    code: 204,
-  });
+  const result = await logoutService(_id);
+  if (result) {
+    return res.status(204).json({
+      message: "logout successful",
+      code: 204,
+    });
+  } else throw new AutorizationError("Logined user not found");
 };
 
 module.exports = {
