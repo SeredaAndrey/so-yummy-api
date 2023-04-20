@@ -14,7 +14,7 @@ const patchUserDataService = async (_id, body, avatarUrl) => {
     avatarUrl = result.avatarUrl;
   }
   const user = await User.findOneAndUpdate(
-    { _id },
+    { _id, loggedIn: true },
     { name, avatarUrl },
     { new: true }
   );
