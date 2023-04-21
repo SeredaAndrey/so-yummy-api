@@ -47,8 +47,7 @@ const verifycationController = async (req, res, next) => {
   return res.status(200).json({
     message: "verification successful",
     code: 200,
-    token: data.token,
-    user: { email: email },
+    data,
   });
 };
 
@@ -63,8 +62,7 @@ const loginController = async (req, res, next) => {
     return res.status(200).json({
       message: "logged successful",
       code: 200,
-      token: data.token,
-      user: { email: email },
+      data,
     });
   } else throw new ValidateError(requestValidate.error);
 };
