@@ -65,7 +65,11 @@ const verificationService = async (email, vCode) => {
       { verify: true, loggedIn: true, vCode: null },
       { new: true }
     );
-    return User.findOne({ _id: user._id }, { password: 0, vCode: 0, __v: 0 });
+    const resUser = User.findOne(
+      { _id: user._id },
+      { password: 0, vCode: 0, __v: 0 }
+    );
+    return { resUser, token };
   }
 };
 
@@ -84,7 +88,11 @@ const loginService = async (email, password) => {
       { loggedIn: true },
       { new: true }
     );
-    return User.findOne({ _id: user._id }, { password: 0, vCode: 0, __v: 0 });
+    const resUser = User.findOne(
+      { _id: user._id },
+      { password: 0, vCode: 0, __v: 0 }
+    );
+    return { resUser, token };
   }
 };
 
