@@ -65,7 +65,7 @@ const verificationService = async (email, vCode) => {
       { verify: true, loggedIn: true, vCode: null },
       { new: true }
     );
-    return { token: token };
+    return User.findOne({ _id: user._id }, { password: 0, vCode: 0, __v: 0 });
   }
 };
 
@@ -84,7 +84,7 @@ const loginService = async (email, password) => {
       { loggedIn: true },
       { new: true }
     );
-    return { token: token };
+    return User.findOne({ _id: user._id }, { password: 0, vCode: 0, __v: 0 });
   }
 };
 
