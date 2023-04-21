@@ -12,7 +12,19 @@ const userRegValidate = Joi.object({
     .minOfLowercase(2)
     .minOfUppercase(2)
     .minOfNumeric(2)
-    .required(),
+    .onlyLatinCharacters()
+    .required()
+    .messages({
+      "password.minOfUppercase":
+        "{#label} should contain at least {#min} uppercase character",
+      "password.minOfLowercase":
+        "{#label} should contain at least {#min} lowercase character",
+      "password.minOfNumeric":
+        "{#label} should contain at least {#min} numeric character",
+      "password.noWhiteSpaces": "{#label} should not contain white spaces",
+      "password.onlyLatinCharacters":
+        "{#label} should contain only latin characters",
+    }),
   name: Joi.string().pattern(new RegExp("^[ a-zA-Z0-9]{1,16}$")).required(),
 });
 
