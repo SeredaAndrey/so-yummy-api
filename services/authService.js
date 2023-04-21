@@ -43,56 +43,56 @@ const registrationService = async ({ email, password, name }) => {
       return info;
     })
     .catch((err) => new InternalError(err));
-  return await User.findOne({ email }, { password: 0, vCode: 0 });
+  return await User.findOne({ email }, { password: 0, vCode: 0, __v: 0 });
 };
 
 const verificationService = async (email, vCode) => {
-  const user = await User.findOne({
+  const resUser = await User.findOne({
     email,
     verify: false,
     vCode: vCode,
   });
-  if (user) {
+  if (resUser) {
     const token = jwt.sign(
       {
-        _id: user._id,
+        _id: resUser._id,
       },
       process.env.JWT_SECRET,
       { expiresIn: "14d" }
     );
     await User.findByIdAndUpdate(
-      { _id: user._id },
+      { _id: resUser._id },
       { verify: true, loggedIn: true, vCode: null },
       { new: true }
     );
-    const resUser = User.findOne(
-      { _id: user._id },
+    const user = await User.findOne(
+      { email },
       { password: 0, vCode: 0, __v: 0 }
     );
-    return { resUser, token };
+    return { user, token };
   }
 };
 
 const loginService = async (email, password) => {
-  const user = await User.findOne({ email, verify: true });
-  if (user && (await bcrypt.compare(password, user.password))) {
+  const resUser = await User.findOne({ email, verify: true });
+  if (resUser && (await bcrypt.compare(password, resUser.password))) {
     const token = jwt.sign(
       {
-        _id: user._id,
+        _id: resUser._id,
       },
       process.env.JWT_SECRET,
       { expiresIn: "14d" }
     );
     await User.findByIdAndUpdate(
-      { _id: user._id },
+      { _id: resUser._id },
       { loggedIn: true },
       { new: true }
     );
-    const resUser = User.findOne(
-      { _id: user._id },
+    const user = await User.findOne(
+      { _id: resUser._id },
       { password: 0, vCode: 0, __v: 0 }
     );
-    return { resUser, token };
+    return { user, token };
   }
 };
 
