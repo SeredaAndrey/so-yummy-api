@@ -21,7 +21,6 @@ const userRegValidate = Joi.object({
         "{#label} should contain at least {#min} lowercase character",
       "password.minOfNumeric":
         "{#label} should contain at least {#min} numeric character",
-      "password.noWhiteSpaces": "{#label} should not contain white spaces",
       "password.onlyLatinCharacters":
         "{#label} should contain only latin characters",
     }),
