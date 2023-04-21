@@ -17,7 +17,13 @@ const recipe = new Schema(
     likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "user" }],
     youtube: { type: String, default: null },
     tags: [String],
-    ingredients: [{ type: mongoose.Schema.Types.ObjectId, ref: "ingredient" }],
+    ingredients: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "ingredient",
+        default: null,
+      },
+    ],
     owner: { type: mongoose.Schema.Types.ObjectId, ref: "user", default: null },
   },
   { timestamps: true }

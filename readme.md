@@ -1,7 +1,7 @@
 Base URL "https://so-yummy-api.herokuapp.com"
 
 ---Registartion----------------------------------------ready for testing-----------------------
-POST: /api/auth/registration body:{"email":"", "password":"","ligin":""}
+POST: /api/auth/registration body:{"email":"", "password":"","login":""}
 
 ---Verification----------------------------------------ready for testing-----------------------
 GET: /api/auth/verify/:vCode body:{"email":""}
@@ -14,7 +14,7 @@ GET: /api/auth/logout heder:Autorization: Bearer token
 GET: /api/user heder:Autorization: Bearer token
 
 ---Patching user data----------------------------------ready for testing-----------------------
-PATCH: /api/user body:{"name":""}, heder:Autorization: Bearer token
+PATCH: /api/user body:{"name":"","image":file}, heder:Autorization: Bearer token
 
 ---Subscribe to recent---------------------------------ready for testing-----------------------
 GET: /api/subscribe body:{"email":""}
