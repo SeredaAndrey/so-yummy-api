@@ -1,3 +1,4 @@
+const { object } = require("joi");
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
@@ -16,12 +17,15 @@ const recipe = new Schema(
     favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: "user" }],
     likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "user" }],
     youtube: { type: String, default: null },
-    tags: [String],
+    tags: [{ type: String, default: null }],
     ingredients: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "ingredient",
-        default: null,
+        id: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "ingredient",
+          default: null,
+        },
+        measure: { type: String, default: null },
       },
     ],
     owner: { type: mongoose.Schema.Types.ObjectId, ref: "user", default: null },
