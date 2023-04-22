@@ -10,7 +10,7 @@ const userRegValidate = Joi.object({
     .string()
     .pattern(new RegExp("^[a-zA-Z0-9]{6,16}$"))
     .minOfLowercase(2)
-    .minOfUppercase(2)
+    .minOfUppercase(0)
     .minOfNumeric(2)
     .onlyLatinCharacters()
     .required()
