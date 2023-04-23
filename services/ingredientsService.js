@@ -1,11 +1,12 @@
 const Ingredient = require("../schemas/ingredientsSchema");
+const Recipe = require("../schemas/recipiesSchema");
 
 const getListIngredientsService = async () => {
   return await Ingredient.find({});
 };
 
 const getIngredientsService = async (ingredient) => {
-  return await Ingredient.findOne(
+  return await Ingredient.find(
     {
       $or: [
         { ttl: { $regex: ingredient.toLowerCase() } },
@@ -15,8 +16,21 @@ const getIngredientsService = async (ingredient) => {
     { ttl: true }
   );
 };
+const getRecipeService = async (id) => {
+  return await Recipe.find({
+    ingredients: {
+      $elemMatch: {
+        id: id,
+      },
+    },
+  });
+};
 
-module.exports = { getListIngredientsService, getIngredientsService };
+module.exports = {
+  getListIngredientsService,
+  getIngredientsService,
+  getRecipeService,
+};
 
 const capitalize = (str) => {
   const toLowerCaseCategory = str.toLowerCase();
