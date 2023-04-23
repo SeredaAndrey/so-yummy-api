@@ -4,6 +4,7 @@ const { searchRecipeValidate } = require("../schemas/searchValidate");
 const {
   getListIngredientsService,
   getIngredientsService,
+  getRecipeService,
 } = require("../services/ingredientsService");
 
 const getListIngredientsController = async (req, res, next) => {
@@ -26,8 +27,18 @@ const searchRecipesByIngredientsController = async (req, res, next) => {
   const skip = (parseInt(page) - 1) * limit;
 
   if (!reqValidate.error) {
-    const ingredient = await getIngredientsService(ingredient);
-    if (ingredient) {
+    const ingredients = await getIngredientsService(ingredient);
+    if (ingredients) {
+      let recipes = [];
+      for (const ingredient of ingredients) {
+        const recipe = await getRecipeService(ingredient.id);
+        recipes = [...recipes, recipe];
+      }
+      res.status(200).json({
+        message: "getting search result success",
+        code: 200,
+        data: recipes,
+      });
     } else throw new FoundingError("ingredient not found");
   } else throw new ValidateError(reqValidate.error);
 };
