@@ -6,7 +6,7 @@ const getListIngredientsService = async () => {
 };
 
 const getIngredientsService = async (ingredient) => {
-  return await Ingredient.find(
+  const ingredients = await Ingredient.find(
     {
       $or: [
         { ttl: { $regex: ingredient.toLowerCase() } },
@@ -15,15 +15,41 @@ const getIngredientsService = async (ingredient) => {
     },
     { ttl: true }
   );
+  return (ingredientsId = ingredients.map((ingredient) => {
+    return ingredient.id;
+  }));
 };
-const getRecipeService = async (id) => {
-  return await Recipe.find({
+
+const getRecipeService = async (ingredientsId, { skip, limit }) => {
+  const count = await Recipe.find({
     ingredients: {
       $elemMatch: {
-        id: id,
+        id: ingredientsId,
       },
     },
-  });
+  }).count();
+  const countPage = await Recipe.find({
+    ingredients: {
+      $elemMatch: {
+        id: ingredientsId,
+      },
+    },
+  })
+    .sort({ popularit: -1 })
+    .skip(skip)
+    .limit(limit)
+    .count();
+  const recipes = await Recipe.find({
+    ingredients: {
+      $elemMatch: {
+        id: ingredientsId,
+      },
+    },
+  })
+    .sort({ popularit: -1 })
+    .skip(skip)
+    .limit(limit);
+  return { count, countPage, recipes };
 };
 
 module.exports = {
