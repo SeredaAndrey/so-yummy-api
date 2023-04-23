@@ -1,6 +1,10 @@
 const { FoundingError } = require("../middleware/errorHandler");
+const { searchRecipeValidate } = require("../schemas/searchValidate");
 
-const { getListIngredientsService } = require("../services/ingredientsService");
+const {
+  getListIngredientsService,
+  getIngredientsService,
+} = require("../services/ingredientsService");
 
 const getListIngredientsController = async (req, res, next) => {
   const ingredients = await getListIngredientsService();
@@ -14,7 +18,18 @@ const getListIngredientsController = async (req, res, next) => {
 };
 
 const searchRecipesByIngredientsController = async (req, res, next) => {
-  res.status(200).json({ message: "ok", code: 200 });
+  const reqValidate = searchRecipeValidate.validate(req.require);
+  console.log(req.query);
+
+  let { ingredient, page = 1, limit = 12 } = req.query;
+  limit = parseInt(limit);
+  const skip = (parseInt(page) - 1) * limit;
+
+  if (!reqValidate.error) {
+    const ingredient = await getIngredientsService(ingredient);
+    if (ingredient) {
+    } else throw new FoundingError("ingredient not found");
+  } else throw new ValidateError(reqValidate.error);
 };
 
 module.exports = {
