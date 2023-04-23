@@ -70,6 +70,7 @@ const deleteOwnerRecipesController = async (req, res, next) => {
     res.status(200).json({
       message: "delete owner recipe success",
       code: 200,
+      data,
     });
   } else throw new FoundingError("recipe not found");
 };

@@ -3,7 +3,14 @@ const { getSingleRecipiesService } = require("./recipiesService");
 
 const getOwnerRecipesService = async (_id, { skip, limit }) => {
   return await Recipe.find({ owner: _id })
-    .select({ _id: 1, thumb: 1, preview: 1, title: 1, description: 1 })
+    .select({
+      _id: true,
+      thumb: true,
+      preview: true,
+      title: true,
+      description: true,
+      time: true,
+    })
     .skip(skip)
     .limit(limit);
 };
