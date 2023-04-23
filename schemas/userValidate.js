@@ -9,9 +9,9 @@ const userRegValidate = Joi.object({
   password: joiPassword
     .string()
     .pattern(new RegExp("^[a-zA-Z0-9]{6,16}$"))
-    .minOfLowercase(2)
+    .minOfLowercase(1)
     .minOfUppercase(0)
-    .minOfNumeric(2)
+    .minOfNumeric(1)
     .onlyLatinCharacters()
     .required()
     .messages({
