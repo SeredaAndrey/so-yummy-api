@@ -27,18 +27,16 @@ const searchRecipesByIngredientsController = async (req, res, next) => {
   const skip = (parseInt(page) - 1) * limit;
 
   if (!reqValidate.error) {
-    const ingredients = await getIngredientsService(ingredient);
-    if (ingredients) {
-      let recipes = [];
-      for (const ingredient of ingredients) {
-        const recipe = await getRecipeService(ingredient.id);
-        recipes = [...recipes, recipe];
-      }
-      res.status(200).json({
-        message: "getting search result success",
-        code: 200,
-        data: recipes,
-      });
+    const ingredientsId = await getIngredientsService(ingredient);
+    if (ingredientsId) {
+      const recipes = await getRecipeService(ingredientsId, { skip, limit });
+      if (recipes) {
+        res.status(200).json({
+          message: "getting search result success",
+          code: 200,
+          data: recipes,
+        });
+      } else throw new FoundingError("recipes not found");
     } else throw new FoundingError("ingredient not found");
   } else throw new ValidateError(reqValidate.error);
 };
