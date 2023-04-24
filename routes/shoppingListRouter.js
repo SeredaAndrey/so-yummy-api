@@ -5,6 +5,7 @@ const { authMiddleware } = require("../middleware/authMiddleware");
 
 const {
   getShoppingListController,
+  addShoppingListController,
   patchShoppingListController,
 } = require("../controllers/shoppingListController");
 
@@ -13,6 +14,7 @@ const router = express.Router();
 router.use(authMiddleware);
 
 router.get("/", asyncWrapper(getShoppingListController));
-router.patch("/:idIngredient", asyncWrapper(patchShoppingListController));
+router.post("/", asyncWrapper(addShoppingListController));
+router.patch("/:idIngredientSL", asyncWrapper(patchShoppingListController));
 
 module.exports = { shoppingListRouter: router };
