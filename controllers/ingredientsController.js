@@ -19,8 +19,7 @@ const getListIngredientsController = async (req, res, next) => {
 };
 
 const searchRecipesByIngredientsController = async (req, res, next) => {
-  const reqValidate = searchRecipeValidate.validate(req.require);
-  console.log(req.query);
+  const reqValidate = searchRecipeValidate.validate(req.query);
 
   let { ingredient, page = 1, limit = 12 } = req.query;
   limit = parseInt(limit);

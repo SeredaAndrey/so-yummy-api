@@ -35,7 +35,7 @@ const getRecipeService = async (ingredientsId, { skip, limit }) => {
       },
     },
   })
-    .sort({ popularit: -1 })
+    .sort({ popularity: -1 })
     .skip(skip)
     .limit(limit)
     .count();
@@ -46,7 +46,7 @@ const getRecipeService = async (ingredientsId, { skip, limit }) => {
       },
     },
   })
-    .sort({ popularit: -1 })
+    .sort({ popularity: -1 })
     .skip(skip)
     .limit(limit);
   return { count, countPage, recipes };
