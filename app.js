@@ -11,6 +11,7 @@ const { ingredientsRouter } = require("./routes/ingredientsRouter");
 const { ownRecipesRouter } = require("./routes/ownRecipesRouter");
 const { favoriteRouter } = require("./routes/favoriteRouter");
 const { popularRouter } = require("./routes/popularRouter");
+const { shoppingListRouter } = require("./routes/shoppingListRouter");
 
 const { errorHandler } = require("./middleware/errorHandler");
 
@@ -38,6 +39,7 @@ app.use("/api/ingredients", ingredientsRouter);
 app.use("/api/ownRecipes", ownRecipesRouter);
 app.use("/api/favorite", favoriteRouter);
 app.use("/api/popular-recipe", popularRouter);
+app.use("/api/shopping-list", shoppingListRouter);
 
 app.use(errorHandler);
 
