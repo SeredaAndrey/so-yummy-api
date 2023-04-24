@@ -1,5 +1,5 @@
-const { FoundingError } = require("../middleware/errorHandler");
-const { searchRecipeValidate } = require("../schemas/searchValidate");
+const { FoundingError, ValidateError } = require("../middleware/errorHandler");
+const { searchRecipebyIngrValidate } = require("../schemas/searchValidate");
 
 const {
   getListIngredientsService,
@@ -19,7 +19,7 @@ const getListIngredientsController = async (req, res, next) => {
 };
 
 const searchRecipesByIngredientsController = async (req, res, next) => {
-  const reqValidate = searchRecipeValidate.validate(req.query);
+  const reqValidate = searchRecipebyIngrValidate.validate(req.query);
 
   let { ingredient, page = 1, limit = 12 } = req.query;
   limit = parseInt(limit);
