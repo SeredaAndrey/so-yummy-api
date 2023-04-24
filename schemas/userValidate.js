@@ -38,7 +38,9 @@ const userLoginValidate = Joi.object({
 });
 
 const userPatchValidate = Joi.object({
-  name: Joi.string().pattern(new RegExp("^[ a-zA-Z0-9]{1,16}$")).required(),
+  name: Joi.string()
+    .pattern(new RegExp("^[a-zA-Z0-9][ a-zA-Z0-9]{1,16}$"))
+    .required(),
   avatarUrl: Joi.any(),
 });
 
