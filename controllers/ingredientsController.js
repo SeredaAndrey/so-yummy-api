@@ -31,9 +31,13 @@ const searchRecipesByIngredientsController = async (req, res, next) => {
       const recipes = await getRecipeService(ingredientsId, { skip, limit });
       if (recipes) {
         res.status(200).json({
-          message: "getting search result success",
+          message: `getting recipes by querry <${ingredient}> is success`,
           code: 200,
-          data: recipes,
+          data: recipes.recipes,
+          count: recipes.count,
+          countPage: recipes.countPage,
+          page: page,
+          limit: limit,
         });
       } else throw new FoundingError("recipes not found");
     } else throw new FoundingError("ingredient not found");
