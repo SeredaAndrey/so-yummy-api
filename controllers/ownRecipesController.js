@@ -30,7 +30,11 @@ const getOwnerRecipesController = async (req, res, next) => {
       res.status(200).json({
         message: "getting owner recipes is success",
         code: 200,
-        recipes: ownRecipes,
+        data: ownRecipes.recipes,
+        count: ownRecipes.count,
+        countPage: ownRecipes.countPage,
+        page: page,
+        limit: limit,
       });
     } else throw new FoundingError("Recipes not found");
   } else throw new ValidateError(reqValidateQuery.error);

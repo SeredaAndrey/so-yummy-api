@@ -2,7 +2,10 @@ const Recipe = require("../schemas/recipiesSchema");
 const { getSingleRecipiesService } = require("./recipiesService");
 
 const getOwnerRecipesService = async (_id, { skip, limit }) => {
-  return await Recipe.find({ owner: _id })
+  const count = await Recipe.find({ owner: _id }).count();
+  const countPage = await Recipe.find({ owner: _id }).skip(skip).limit(limit)
+    .count;
+  const recipes = await Recipe.find({ owner: _id })
     .select({
       _id: true,
       thumb: true,
@@ -13,6 +16,8 @@ const getOwnerRecipesService = async (_id, { skip, limit }) => {
     })
     .skip(skip)
     .limit(limit);
+
+  return { count, countPage, recipes };
 };
 
 const postOwnerRecipesService = async (_id, body, thumb) => {
