@@ -3,8 +3,10 @@ const { getSingleRecipiesService } = require("./recipiesService");
 
 const getOwnerRecipesService = async (_id, { skip, limit }) => {
   const count = await Recipe.find({ owner: _id }).count();
-  const countPage = await Recipe.find({ owner: _id }).skip(skip).limit(limit)
-    .count;
+  const countPage = await Recipe.find({ owner: _id })
+    .skip(skip)
+    .limit(limit)
+    .count();
   const recipes = await Recipe.find({ owner: _id })
     .select({
       _id: true,
