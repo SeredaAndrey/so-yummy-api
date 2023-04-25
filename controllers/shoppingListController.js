@@ -1,4 +1,5 @@
-const { FoundingError } = require("../middleware/errorHandler");
+const { FoundingError, ValidateError } = require("../middleware/errorHandler");
+const { shopingListValidate } = require("../schemas/shopingListValidate");
 const {
   addShoppingListService,
   getShoppingListService,
@@ -20,18 +21,22 @@ const getShoppingListController = async (req, res, next) => {
 };
 
 const addShoppingListController = async (req, res, next) => {
+  const reqValidate = shopingListValidate.validate(req.body);
+
   const userId = req.user._id;
   const body = req.body;
 
-  const shoppingList = await addShoppingListService(userId, body);
+  if (!reqValidate.error) {
+    const shoppingList = await addShoppingListService(userId, body);
 
-  if (shoppingList) {
-    res.status(200).json({
-      message: "add to shoppinglist success",
-      code: 200,
-      data: shoppingList,
-    });
-  } else throw new FoundingError("Shopping list not found");
+    if (shoppingList) {
+      res.status(200).json({
+        message: "add to shoppinglist success",
+        code: 200,
+        data: shoppingList,
+      });
+    } else throw new FoundingError("Shopping list not found");
+  } else throw new ValidateError(reqValidate.error);
 };
 
 const patchShoppingListController = async (req, res, next) => {
