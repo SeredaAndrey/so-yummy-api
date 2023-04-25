@@ -4,6 +4,7 @@ const { userPatchValidate } = require("../schemas/userValidate");
 const {
   getUserDataService,
   patchUserDataService,
+  getUserInfoService,
 } = require("../services/userService");
 
 const getUserDataController = async (req, res, next) => {
@@ -17,6 +18,20 @@ const getUserDataController = async (req, res, next) => {
     });
   }
   throw new FoundingError("User not found");
+};
+
+const getUserInfoController = async (req, res, next) => {
+  const _id = req.user._id;
+  const infoUser = await getUserInfoService(_id);
+  if (infoUser) {
+    res.status(200).json({
+      message: "Getting user information success",
+      code: 200,
+      infoUser,
+    });
+  } else {
+    throw new FoundingError("user information not found");
+  }
 };
 
 const patchUserDataController = async (req, res, next) => {
@@ -46,4 +61,8 @@ const patchUserDataController = async (req, res, next) => {
   }
 };
 
-module.exports = { getUserDataController, patchUserDataController };
+module.exports = {
+  getUserDataController,
+  getUserInfoController,
+  patchUserDataController,
+};
