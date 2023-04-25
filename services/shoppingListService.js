@@ -20,11 +20,12 @@ const addShoppingListService = async (userId, body) => {
 };
 
 const patchShoppingListService = async (userId, idIngredientSL) => {
-  return await ShopingList.findOneAndUpdate(
+  const result = await ShopingList.findOneAndUpdate(
     { owner: userId },
-    { $pull: { ingredients: idIngredientSL } },
+    { $pull: { ingredients: { _id: idIngredientSL } } },
     { new: true }
   );
+  return result;
 };
 
 module.exports = {

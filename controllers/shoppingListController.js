@@ -39,6 +39,14 @@ const patchShoppingListController = async (req, res, next) => {
   const userId = req.user._id;
 
   const result = await patchShoppingListService(userId, idIngredientSL);
+
+  if (result) {
+    res.status(200).json({
+      message: "remove ingridient from shoppinglist success",
+      code: 200,
+      data: result,
+    });
+  } else throw new FoundingError("Shopping list not found");
 };
 
 module.exports = {
