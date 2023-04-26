@@ -33,7 +33,7 @@ const patchOwnerRecipesService = async (userId, idRecipes, body, thumb) => {
   }
   return await Recipe.findOneAndUpdate(
     { _id: idRecipes },
-    { ...body, thumb },
+    { ...body, thumb, owner: userId },
     { new: true }
   );
 };
