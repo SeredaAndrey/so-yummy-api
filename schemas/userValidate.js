@@ -24,7 +24,9 @@ const userRegValidate = Joi.object({
       "password.onlyLatinCharacters":
         "{#label} should contain only latin characters",
     }),
-  name: Joi.string().pattern(new RegExp("^[ a-zA-Z0-9]{1,16}$")).required(),
+  name: Joi.string()
+    .pattern(new RegExp("^[a-zа-яA-ZА-Я0-9]{1,16}[ a-zа-яA-ZА-Я0-9]{0,16}$"))
+    .required(),
 });
 
 const userLoginValidate = Joi.object({
@@ -39,7 +41,7 @@ const userLoginValidate = Joi.object({
 
 const userPatchValidate = Joi.object({
   name: Joi.string()
-    .pattern(new RegExp("^[a-zA-Z0-9][ a-zA-Z0-9]{1,16}$"))
+    .pattern(new RegExp("^[a-zа-яA-ZА-Я0-9]{1,16}[ a-zа-яA-ZА-Я0-9]{0,16}$"))
     .required(),
   avatarUrl: Joi.any(),
 });
