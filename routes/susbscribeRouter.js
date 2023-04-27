@@ -6,6 +6,6 @@ const { subscribeController } = require("../controllers/subscribeController");
 
 const router = express.Router();
 
-router.get("/", asyncWrapper(subscribeController));
+router.post("/", asyncWrapper(subscribeController));
 
 module.exports = { subscribeRouter: router };
