@@ -14,7 +14,9 @@ const avatarStorage = new CloudinaryStorage({
     folder: "avatars",
     allowedFormats: ["jpg", "png"],
     format: async (req, file) => "jpg",
-    eager: [{ width: 200, height: 200, crop: "crop", gravity: "face" }],
+    transformation: [
+      { width: 200, height: 200, crop: "crop", gravity: "face" },
+    ],
   },
 });
 

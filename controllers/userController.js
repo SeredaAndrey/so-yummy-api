@@ -35,7 +35,7 @@ const getUserInfoController = async (req, res, next) => {
 };
 
 const patchUserDataController = async (req, res, next) => {
-  // console.log(req.file);
+  console.log(req.file);
   let avatarUrl = "";
   if (req.file) {
     avatarUrl = req.file.path;
