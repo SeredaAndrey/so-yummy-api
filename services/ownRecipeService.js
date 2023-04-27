@@ -23,7 +23,7 @@ const getOwnerRecipesService = async (_id, { skip, limit }) => {
 };
 
 const postOwnerRecipesService = async (_id, body, thumb) => {
-  return await Recipe.create({ ...body, owner: _id, thumb });
+  return await Recipe.create({ ...body, owner: _id, thumb, preview: thumb });
 };
 
 const deleteOwnerRecipesService = async (userId, idRecipes) => {
@@ -40,7 +40,7 @@ const patchOwnerRecipesService = async (userId, idRecipes, body, thumb) => {
   }
   return await Recipe.findOneAndUpdate(
     { _id: idRecipes },
-    { ...body, thumb, owner: userId },
+    { ...body, thumb, preview: thumb, owner: userId },
     { new: true }
   );
 };

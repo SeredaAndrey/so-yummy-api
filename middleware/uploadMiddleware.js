@@ -8,15 +8,31 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET,
 });
 
-const storage = new CloudinaryStorage({
+const avatarStorage = new CloudinaryStorage({
   cloudinary: cloudinary,
-  folder: "avatars",
-  allowedFormats: ["jpg", "png"],
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
+  params: {
+    folder: "avatars",
+    allowedFormats: ["jpg", "png"],
+    format: async (req, file) => "jpg",
+    eager: [{ width: 200, height: 200, crop: "crop", gravity: "face" }],
   },
 });
 
-const uploadCloud = multer({ storage });
+const recipeStorage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "recipe",
+    allowedFormats: ["jpg", "png"],
+    format: async (req, file) => "jpg",
+    eager: [
+      { width: 700, height: 700, crop: "fill" },
+      { width: 350, height: 350, crop: "fill" },
+    ],
+  },
+});
 
-module.exports = uploadCloud;
+const uploadAvatarCloud = multer({ storage: avatarStorage });
+const uploadRecipePhotoCloud = multer({ storage: recipeStorage });
+
+module.exports = uploadAvatarCloud;
+module.exports = uploadRecipePhotoCloud;

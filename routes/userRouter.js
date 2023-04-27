@@ -3,7 +3,7 @@ const express = require("express");
 const { authMiddleware } = require("../middleware/authMiddleware");
 const { asyncWrapper } = require("../middleware/errorHandler");
 
-const uploadCloud = require("../middleware/uploadMiddleware");
+const uploadAvatarCloud = require("../middleware/uploadMiddleware");
 
 const {
   getUserDataController,
@@ -19,7 +19,7 @@ router.get("/", asyncWrapper(getUserDataController));
 router.get("/info", asyncWrapper(getUserInfoController));
 router.patch(
   "/",
-  uploadCloud.single("image"),
+  uploadAvatarCloud.single("image"),
   asyncWrapper(patchUserDataController)
 );
 
