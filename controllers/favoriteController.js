@@ -9,7 +9,7 @@ const getFavoriteRecipesController = async (req, res, next) => {
   const reqValidate = searchRecipeValidate.validate(req.require);
   const _id = req.user._id;
 
-  let { page = 1, limit = 12 } = req.query;
+  let { page = 1, limit = 4 } = req.query;
   limit = parseInt(limit);
   const skip = (parseInt(page) - 1) * limit;
 
