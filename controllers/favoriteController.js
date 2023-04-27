@@ -19,7 +19,11 @@ const getFavoriteRecipesController = async (req, res, next) => {
       res.status(200).json({
         message: "getting recipe favorite is success",
         code: 200,
-        data: result,
+        data: result.recipes,
+        count: result.count,
+        countPage: result.countPage,
+        page: page,
+        limit: limit,
       });
     } else throw new FoundingError("recipe not found");
   } else throw new ValidateError(reqValidate.error);
