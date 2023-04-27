@@ -14,9 +14,7 @@ const avatarStorage = new CloudinaryStorage({
     folder: "avatars",
     allowedFormats: ["jpg", "png"],
     format: async (req, file) => "jpg",
-    transformation: [
-      { width: 200, height: 200, crop: "crop", gravity: "face" },
-    ],
+    eager: [{ width: 200, height: 200, crop: "crop", gravity: "face" }],
   },
 });
 
@@ -27,8 +25,18 @@ const recipeStorage = new CloudinaryStorage({
     allowedFormats: ["jpg", "png"],
     format: async (req, file) => "jpg",
     eager: [
-      { width: 700, height: 700, crop: "fill" },
-      { width: 350, height: 350, crop: "fill" },
+      {
+        width: 700,
+        height: 700,
+        crop: "fill",
+        public_id: (req, file) => `${file.originalname}_700`,
+      },
+      {
+        width: 350,
+        height: 350,
+        crop: "fill",
+        public_id: (req, file) => `${file.originalname}_350`,
+      },
     ],
   },
 });

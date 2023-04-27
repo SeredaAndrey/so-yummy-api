@@ -1,3 +1,5 @@
+const date = require("date-and-time");
+
 const Recipe = require("../schemas/recipiesSchema");
 const User = require("../schemas/userSchema");
 
@@ -12,14 +14,18 @@ const getUserInfoService = async (_id) => {
     },
   }).count();
 
-  const countRecipeAddingToPortal = await await Recipe.find({
+  const countRecipeAddingToPortal = await Recipe.find({
     owner: _id,
   }).count();
+
+  const { createdAt } = await User.findOne({ _id });
+  const timeNow = new Date();
+  const dayInPortal = parseInt((timeNow - createdAt) / 1000 / 60 / 60 / 24);
 
   return {
     countToFavorite: countRecipeAddingToFavorite,
     countUserRecipe: countRecipeAddingToPortal,
-    timeInPortal: "",
+    dayInPortal,
   };
 };
 

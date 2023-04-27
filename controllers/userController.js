@@ -1,3 +1,5 @@
+// const cloudinary = require("cloudinary").v2;
+
 const { FoundingError, ValidateError } = require("../middleware/errorHandler");
 const { userPatchValidate } = require("../schemas/userValidate");
 
@@ -35,7 +37,8 @@ const getUserInfoController = async (req, res, next) => {
 };
 
 const patchUserDataController = async (req, res, next) => {
-  console.log(req.file);
+  // console.log(cloudinary);
+
   let avatarUrl = "";
   if (req.file) {
     avatarUrl = req.file.path;

@@ -1,3 +1,5 @@
+// const cloudinary = require("cloudinary").v2;
+
 const {
   ValidateError,
   FoundingError,
@@ -80,6 +82,13 @@ const deleteOwnerRecipesController = async (req, res, next) => {
 };
 
 const patchOwnerRecipesController = async (req, res, next) => {
+  // const imageUrl350 = cloudinary.url(`${req.file.originalname}_350`, {
+  //   secure: true,
+  // });
+  // const imageUrl700 = cloudinary.url(`${req.file.originalname}_350`, {
+  //   secure: true,
+  // });
+  // console.log(imageUrl350, imageUrl700);
   let thumb = "";
   if (req.file) {
     thumb = req.file.path;
