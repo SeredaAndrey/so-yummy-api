@@ -17,7 +17,7 @@ const getResponseSearchRecipeByTitleService = async (
       { title: { $regex: capitalize(title) } },
     ],
   })
-    .sort({ popularit: -1 })
+    .sort({ popularity: -1 })
     .skip(skip)
     .limit(limit)
     .count();
@@ -27,7 +27,7 @@ const getResponseSearchRecipeByTitleService = async (
       { title: { $regex: capitalize(title) } },
     ],
   })
-    .sort({ popularit: -1 })
+    .sort({ popularity: -1 })
     .skip(skip)
     .limit(limit);
   return { count, countPage, recipes };
