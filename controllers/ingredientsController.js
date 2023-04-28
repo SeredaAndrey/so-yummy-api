@@ -31,7 +31,7 @@ const searchRecipesByIngredientsController = async (req, res, next) => {
       const recipes = await getRecipeService(ingredientsId, { skip, limit });
       if (recipes) {
         res.status(200).json({
-          message: `getting recipes by querry <${ingredient}> is success`,
+          message: `getting recipes by query <${ingredient}> is success`,
           code: 200,
           data: recipes.recipes,
           count: recipes.count,
