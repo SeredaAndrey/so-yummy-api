@@ -85,7 +85,7 @@ const patchOwnerRecipesController = async (req, res, next) => {
   // const imageUrl350 = cloudinary.url(`${req.file.originalname}_350`, {
   //   secure: true,
   // });
-  // const imageUrl700 = cloudinary.url(`${req.file.originalname}_350`, {
+  // const imageUrl700 = cloudinary.url(`${req.file.originalname}_700`, {
   //   secure: true,
   // });
   // console.log(imageUrl350, imageUrl700);

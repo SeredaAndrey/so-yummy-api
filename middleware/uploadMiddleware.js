@@ -11,17 +11,24 @@ cloudinary.config({
 const avatarStorage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: "avatars",
+    folder: (req, file) => "avatars",
     allowedFormats: ["jpg", "png"],
     format: async (req, file) => "jpg",
-    eager: [{ width: 200, height: 200, crop: "crop", gravity: "face" }],
+    transformation: [
+      { gravity: "face", height: 200, width: 200, crop: "thumb" },
+      { border: "5px_solid_black", radius: 20 },
+      { overlay: "cloudinary_icon_white" },
+      { flags: "relative", width: "0.25", crop: "scale" },
+      { opacity: 50 },
+      { flags: "layer_apply", gravity: "north_east", x: 10, y: 10 },
+    ],
   },
 });
 
 const recipeStorage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: "recipe",
+    folder: (req, file) => "recipe",
     allowedFormats: ["jpg", "png"],
     format: async (req, file) => "jpg",
     eager: [
