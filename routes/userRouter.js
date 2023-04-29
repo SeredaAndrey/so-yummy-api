@@ -3,7 +3,7 @@ const express = require("express");
 const { authMiddleware } = require("../middleware/authMiddleware");
 const { asyncWrapper } = require("../middleware/errorHandler");
 
-const uploadAvatarCloud = require("../middleware/uploadMiddleware");
+const uploadAvatarCloud = require("../middleware/uploadAvatarMiddleware");
 
 const {
   getUserDataController,
