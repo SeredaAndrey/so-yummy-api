@@ -1,0 +1,58 @@
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const multer = require("multer");
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_KEY,
+  api_secret: process.env.CLOUDINARY_SECRET,
+});
+
+const avatarStorage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    // asset_folder: (req, file) => "/avatars/",
+    folder: (req, file) => "/avatars",
+    allowedFormats: ["jpg", "png"],
+    format: async (req, file) => "jpg",
+    transformation: (req, file) => [
+      {
+        gravity: "auto:face",
+        width: 200,
+        height: 200,
+        crop: "fill",
+        public_id: (req, file) => `${file.originalname}_200`,
+      },
+    ],
+  },
+});
+
+// const recipeStorage = new CloudinaryStorage({
+//   cloudinary: cloudinary,
+//   params: {
+//     // asset_folder: (req, file) => "/recipe/",
+//     folder: (req, file) => "/recipe",
+//     allowedFormats: ["jpg", "png"],
+//     format: async (req, file) => "jpg",
+//     eager: [
+//       {
+//         width: 700,
+//         height: 700,
+//         crop: "fill",
+//         public_id: (req, file) => `${file.originalname}_700`,
+//       },
+//       {
+//         width: 350,
+//         height: 350,
+//         crop: "fill",
+//         public_id: (req, file) => `${file.originalname}_350`,
+//       },
+//     ],
+//   },
+// });
+
+const uploadAvatarCloud = multer({ storage: avatarStorage });
+// const uploadRecipePhotoCloud = multer({ storage: recipeStorage });
+
+module.exports = uploadAvatarCloud;
+// module.exports = uploadRecipePhotoCloud;
