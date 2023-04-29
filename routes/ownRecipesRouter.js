@@ -1,6 +1,6 @@
 const express = require("express");
 
-const uploadRecipePhotoCloud = require("../middleware/uploadAvatarMiddleware");
+const uploadRecipePhotoCloud = require("../middleware/uploadRecipePhotoMiddlevare");
 
 const { asyncWrapper } = require("../middleware/errorHandler");
 const {
