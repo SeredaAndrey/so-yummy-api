@@ -67,7 +67,7 @@ heder: Autorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ND
 PATCH: /api/user
 
 body: {
-"name":"Name",
+"name":"Name"\*\*,
 "image":file}
 
 heder: Autorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDRlYTExYmJjNTc1ZTUyODNmZDBiMGYiLCJpYXQiOjE2ODI4NzU5MjUsImV4cCI6MTY4NDA4NTUyNX0.uwIZwcXZhoD8ftJTS1sadKpGb_muVko0KAC2YENIB2Q"
@@ -109,7 +109,7 @@ heder: Autorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ND
 # rout: /api/subscribe
 
 body: {
-"email":"qwe@qwe.net",
+"email":"qwe@qwe.net"\*\*,
 }
 
 # invalid answer: status 400
