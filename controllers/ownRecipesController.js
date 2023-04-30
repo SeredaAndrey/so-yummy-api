@@ -59,7 +59,7 @@ const postOwnerRecipesController = async (req, res, next) => {
     if (recipe) {
       res.status(201).json({
         message: "create recipe success",
-        code: 200,
+        code: 201,
         recipe,
       });
     } else throw new InternalError("Internal error");
