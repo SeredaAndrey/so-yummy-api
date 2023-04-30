@@ -10,24 +10,10 @@ cloudinaryRecipe.config({
 
 const recipeStorage = new CloudinaryStorage({
   cloudinary: cloudinaryRecipe,
+  allowedFormats: ["jpg", "png"],
   params: {
     folder: (req, file) => "/recipe",
-    allowedFormats: ["jpg", "png"],
-    format: async (req, file) => "jpg",
-    eager: (req, file) => [
-      {
-        width: 700,
-        height: 700,
-        crop: "fill",
-        public_id: (req, file) => `700_${file.originalname}`,
-      },
-      {
-        width: 350,
-        height: 350,
-        crop: "fill",
-        public_id: (req, file) => `350_${file.originalname}`,
-      },
-    ],
+    transformation: (req, file) => ["recipe_700"],
   },
 });
 
