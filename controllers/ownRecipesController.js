@@ -1,4 +1,4 @@
-const cloudinary = require("cloudinary").v2;
+// const cloudinaryRecipe = require("cloudinary").v2;
 
 const {
   ValidateError,
@@ -82,20 +82,16 @@ const deleteOwnerRecipesController = async (req, res, next) => {
 };
 
 const patchOwnerRecipesController = async (req, res, next) => {
-  const imageUrl350 = cloudinary.url(`350_${req.file.originalname}`, {
-    secure: true,
-  });
-  const imageUrl700 = cloudinary.url(`700_${req.file.originalname}`, {
-    secure: true,
-  });
-  console.log(imageUrl350, imageUrl700);
-  // console.log(req.file);
+  console.log(req.file);
   let thumb = "";
   if (req.file) {
     thumb = req.file.path;
   } else {
     thumb = null;
   }
+
+  // await recipePrevievStorage(req.file.filename);
+
   const reqValidate = patchRecipeValidate.validate(req.body);
   const body = req.body;
   const userId = req.user._id;
@@ -117,6 +113,11 @@ const patchOwnerRecipesController = async (req, res, next) => {
     } else throw new FoundingError("recipe not found");
   } else throw new ValidateError(reqValidate.error);
 };
+
+// const recipePrevievStorage = async (filename) => {
+//   console.log(`${filename}.jpg`);
+//   cloudinaryRecipe.image(`${filename}.jpg`, { transformation: ["recipe_350"] });
+// };
 
 module.exports = {
   getOwnerRecipesController,
