@@ -10,6 +10,16 @@ const getSingleRecipiesService = async (idResipie) => {
 };
 
 const getRecipesInCategoryService = async (category, { skip, limit }) => {
+  const count = await Recipe.find({ category })
+    .sort({ popularity: -1 })
+    .count();
+
+  const countPage = await Recipe.find({ category })
+    .sort({ popularity: -1 })
+    .skip(skip)
+    .limit(limit)
+    .count();
+
   const result = await Recipe.find({ category })
     .sort({ popularity: -1 })
     .select({
@@ -23,7 +33,7 @@ const getRecipesInCategoryService = async (category, { skip, limit }) => {
     })
     .skip(skip)
     .limit(limit);
-  return { category, recipes: result };
+  return { category, count, countPage, recipes: result };
 };
 
 module.exports = {

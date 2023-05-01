@@ -73,7 +73,10 @@ const getRecipesInCategoryController = async (req, res, next) => {
         return res.status(200).json({
           message: "getting recipes by category success",
           code: 200,
-          data: recipes,
+          category: recipes.category,
+          data: recipes.recipes,
+          count: recipes.count,
+          countPage: recipes.countPage,
           page: page,
           limit: limit,
         });

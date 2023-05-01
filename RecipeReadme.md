@@ -71,10 +71,10 @@ heder: Autorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ND
 {
 "message": "getting recipes by category success",
 "code": 200,
-"data": {
 "category": "Beef",
-"recipes": [...]
-},
+"data": [...],
+"count": 1,
+"countPage": 1,
 "page": 1,
 "limit": 8
 }
