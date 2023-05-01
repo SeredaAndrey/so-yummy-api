@@ -13,7 +13,7 @@ const getShoppingListController = async (req, res, next) => {
 
   if (shoppingList) {
     res.status(200).json({
-      message: "getting shoppinglist success",
+      message: "getting shopping list success",
       code: 200,
       data: shoppingList,
     });
@@ -31,7 +31,7 @@ const addShoppingListController = async (req, res, next) => {
 
     if (shoppingList) {
       res.status(200).json({
-        message: "add to shoppinglist success",
+        message: "add to shopping list success",
         code: 200,
         data: shoppingList,
       });
