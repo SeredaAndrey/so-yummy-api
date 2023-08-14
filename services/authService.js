@@ -35,7 +35,7 @@ const registrationService = async ({ email, password, name }) => {
     from: process.env.MAIL_LOGIN,
     subject: "Thank you for registration!",
     text: `Please, follow this link: https://katedietkova.github.io/so-yummy-project/verification/${vCode}`,
-    html: `Please, follow this link: <a href="https://katedietkova.github.io/so-yummy-project/verification/${vCode}"></a>`,
+    // html: `Please, follow this link: <a href="https://katedietkova.github.io/so-yummy-project/verification/${vCode}"></a>`,
   };
   transporter
     .sendMail(msgVerify)
